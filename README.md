@@ -730,46 +730,8 @@ CREATE TABLE api_ambulance (
     is_active BOOLEAN DEFAULT TRUE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-Table: api_emergency
-CREATE TABLE api_emergency (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    patient_name VARCHAR(100) NOT NULL,
-    patient_age INTEGER NOT NULL,
-    patient_gender VARCHAR(10) NOT NULL,
-    patient_phone VARCHAR(20) NOT NULL,
-    emergency_type VARCHAR(100) NOT NULL,
-    severity VARCHAR(20) DEFAULT 'medium',
-    description TEXT,
-    pickup_address TEXT NOT NULL,
-    pickup_latitude DECIMAL(9,6) NOT NULL,
-    pickup_longitude DECIMAL(9,6) NOT NULL,
-    status VARCHAR(20) DEFAULT 'pending',
-    ambulance_id INTEGER REFERENCES api_ambulance(id),
-    assigned_hospital_id INTEGER REFERENCES api_hospital(id),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    completed_at DATETIME
-);
-Table: api_routetracking
-CREATE TABLE api_routetracking (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    emergency_id INTEGER REFERENCES api_emergency(id),
-    current_latitude DECIMAL(9,6) NOT NULL,
-    current_longitude DECIMAL(9,6) NOT NULL,
-    distance_remaining DECIMAL(10,2),
-    estimated_arrival_time DATETIME,
-    speed DECIMAL(5,2),
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-Table: api_notification
-CREATE TABLE api_notification (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    emergency_id INTEGER REFERENCES api_emergency(id),
-    hospital_id INTEGER REFERENCES api_hospital(id),
-    notification_type VARCHAR(50),
-    message TEXT NOT NULL,
-    is_read BOOLEAN DEFAULT FALSE,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+
+
 ________________________________________
 CONCLUSION
 This Software Requirements Specification document provides a comprehensive description of the Smart Ambulance Route Optimization & Emergency Notification System. The system addresses critical needs in emergency medical services through intelligent automation, real-time tracking, and effective communication.
